@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plagiarism</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <<h1>📄 Plagiarism Checker</h1>
+
+<p class="fun-text">
+    Ohh wait... 👀<br>
+    Same or different? 🤨<br>
+    Let’s find out! 🔍✨
+</p>
+
+   <textarea id="text1" placeholder="Paste first text here... ✍️"></textarea>
+   <textarea id="text2" placeholder="Paste second text here... 📄"></textarea>
+
+    <h3 class="upload-text">📂 Or upload files instead</h3>
+
+    <input type="file" id="file1">
+    <input type="file" id="file2">
+
+    <button onclick="checkPlagiarism()">🔍 Check Now</button>
+
+    <div id="result"></div>
+    <div id="matches"></div>
+
+    <a href="/" class="back-btn">⬅ Back to Dashboard</a>
+</div>
+
+<script>
+function checkPlagiarism() {
+
+    let formData = new FormData();
+
+    let file1 = document.getElementById("file1").files[0];
+    let file2 = document.getElementById("file2").files[0];
+
+    if (file1 && file2) {
+        formData.append("file1", file1);
+        formData.append("file2", file2);
+    } else {
+        formData.append("text1", document.getElementById("text1").value);
+        formData.append("text2", document.getElementById("text2").value);
+    }
+
+    fetch("/plagiarism-check", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        document.getElementById("result").innerText =
+            "Plagiarism: " + data.percentage + "%";
+
+        let html = "";
+
+        data.matches.forEach(m => {
+            html += `<p class="match">${m[0]} <br> ≈ <br> ${m[1]} (${m[2]}%)</p>`;
+        });
+
+        document.getElementById("matches").innerHTML = html;
+    });
+}
+</script>
+
+</body>
+</html>

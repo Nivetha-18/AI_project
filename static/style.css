@@ -1,0 +1,132 @@
+:root {
+  --black: #0b0b0b;
+  --red: #8b0000;
+  --gold: #ffd700;
+  --dark-red: #3b0000;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0b0b0b, #3b0000, #000000);
+  color: var(--gold);
+  text-align: center;
+}
+
+.container {
+    margin-top: 80px;
+}
+
+.cards {
+    margin-top: 40px;
+}
+
+.card {
+  display: inline-block;
+  margin: 20px;
+  padding: 20px 40px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #8b0000, #000);
+  color: var(--gold);
+  font-size: 1.2rem;
+  text-decoration: none;
+  box-shadow: 0 0 15px var(--red);
+  transition: 0.3s;
+  animation: glow 2s infinite;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px var(--gold);
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px red; }
+  50% { box-shadow: 0 0 20px gold; }
+  100% { box-shadow: 0 0 5px red; }
+}
+
+textarea {
+  width: 70%;
+  height: 130px;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #111;
+  color: white;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 10px var(--red);
+  font-size: 1rem;
+}
+button {
+  margin-top: 15px;
+  background: var(--gold);
+  color: black;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: var(--red);
+  color: white;
+}
+
+.progress-container {
+  width: 70%;
+  height: 25px;
+  background: #222;
+  border-radius: 20px;
+  margin: 10px auto;
+  overflow: hidden;
+  border: 1px solid var(--gold);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, red, gold);
+  transition: width 0.5s;
+}
+
+.match {
+  background: #1a0000;
+  border: 1px solid var(--gold);
+  padding: 15px;
+  margin: 15px auto;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--red);
+}
+.fun-text {
+  margin: 15px 0 30px;
+  font-size: 1.2rem;
+  color: #ffcc70;
+  line-height: 1.6;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  text-decoration: none;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: var(--gold);
+  color: black;
+}
+
+#aiResult, #result {
+  margin-top: 25px;
+  font-size: 1.3rem;
+  color: var(--gold);
+  text-shadow: 0 0 10px red;
+}

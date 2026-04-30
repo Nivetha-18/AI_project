@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🧠 AI Text Detector</h1>
+
+<p class="fun-text">
+    Let’s see... 🤔<br>
+    Is this written by a Human 😇 or AI 🤖?<br>
+    Truth loading... 🎯
+</p>
+
+    <textarea id="aiText" placeholder="Paste your text here... let's expose the truth 👀"></textarea>
+    <button onclick="detectAI()">🚀 Detect Now</button>
+
+    <div id="aiResult"></div>
+    <p class="meter-text">AI Power Level ⚡</p>
+
+
+    <div class="progress-container">
+        <div id="aiBar" class="progress-bar"></div>
+    </div>
+
+    <a href="/" class="back-btn">⬅ Back to Dashboard</a>
+</div>
+
+<script>
+function detectAI() {
+    let text = document.getElementById("aiText").value;
+
+    fetch("/detect-ai", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ text: text })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("aiResult").innerHTML =
+            "AI: " + data.ai + "% | Human: " + data.human + "% <br>" + data.explanation;
+
+        document.getElementById("aiBar").style.width = data.ai + "%";
+    });
+}
+</script>
+
+</body>
+</html>
